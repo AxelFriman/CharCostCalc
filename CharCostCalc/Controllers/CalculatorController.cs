@@ -34,7 +34,7 @@ namespace CharCostCalc.Controllers
                                 join r in _db.Resources on u.Res.id equals r.id
                                 where u.Lvl > levelFrom
                                     && u.Lvl <= levelTo
-                                //&& u.Char.Id == characterId //тут join на лишнюю таблицу, можно попробовать избежать, добавив в модель charId
+                                    && u.CharId == characterId 
                                 group u by new { r.id, r.Name } into grp
                                 select new UpgradeCost()
                                 {
