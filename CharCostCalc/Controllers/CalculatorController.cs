@@ -30,17 +30,16 @@ namespace CharCostCalc.Controllers
                                 select b.EXP;
             int purpleBooksNeeded = lvlSum / purpleBookEXP.First(); //TODO trycatch
 
-            var upgradeCost =   from u in _db.Upgrades
-                                join r in _db.Resources on u.Res.id equals r.id
-                                where u.Lvl > levelFrom
-                                    && u.Lvl <= levelTo
-                                    && u.CharId == characterId 
-                                group u by new { r.id, r.Name } into grp
-                                select new UpgradeCost()
-                                {
-                                    resName = grp.Key.Name,
-                                    resAmount = grp.Sum(k => k.Amount),
-                                };
+            var upgradeCost = from u in _db.Upgrades
+                              where u.Lvl > levelFrom
+                                  && u.Lvl <= levelTo
+                                  && u.CharId == characterId
+                              group u by new { u.Res.id, u.Res.Name } into grp
+                              select new UpgradeCost()
+                              {
+                                  resName = grp.Key.Name,
+                                  resAmount = grp.Sum(k => k.Amount),
+                              };
             return upgradeCost;
         }
     }
