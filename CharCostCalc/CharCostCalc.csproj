@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data\CharCost.db" />
+    <None Remove="data\sqlite3.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
@@ -13,6 +18,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="data\" />
   </ItemGroup>
 
 </Project>
